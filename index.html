@@ -9,7 +9,12 @@
 <meta property="og:site_name" content="dear-hamin" />
 <meta property="og:title" content="한 사람의 안뇽을 바라는 일 🐈‍⬛🌱" />
 <meta property="og:description" content="오늘도, 앞으로도 마음 놓고 행복하기를. 생일 축하해, 하민아. 🖤" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="https://doljhqqap.github.io/dear-hamin/og-cover.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="아이보리색 생일 책 표지, 검은 고양이와 케이크, 한 사람의 안뇽을 바라는 일" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://doljhqqap.github.io/dear-hamin/og-cover.png" />
 <meta name="twitter:title" content="한 사람의 안뇽을 바라는 일 🐈‍⬛🌱" />
 <meta name="twitter:description" content="오늘도, 앞으로도 마음 놓고 행복하기를. 생일 축하해, 하민아. 🖤" />
 <title>한 사람의 안뇽을 바라는 일 — Dear Hamin</title>
@@ -76,7 +81,7 @@ const page=document.getElementById('page'),book=document.getElementById('book'),
 let index=0,locked=false;
 const total=pages.length+2;
 function render(el,i){el.className='sheet';el.innerHTML='';if(i===0){el.classList.add('cover');el.innerHTML='<span class="little">HAPPY BIRTHDAY, HAMIN</span><span class="symbol" aria-hidden="true">'+coverArtwork+'</span><h1>한 사람의<br>안뇽을 바라는 일</h1><span class="for">하민이에게</span>';el.onclick=()=>go(1);}
-else if(i===total-1){el.classList.add('final');el.innerHTML='<div class="star" aria-hidden="true">✳</div><h2>생일 축하해, 하민아.</h2><p>오늘도, 앞으로도<br>마음 놓고 행복하기를.</p><span class="footer">TO BE CONTINUED…</span>';el.onclick=null;}
+else if(i===total-1){el.classList.add('final');el.innerHTML='<div class="star" aria-hidden="true">✦</div><h2>생일 축하해, 하민아.</h2><p>오늘도, 앞으로도<br>마음 놓고 행복하기를.</p><span class="footer">TO BE CONTINUED…</span>';el.onclick=null;}
 else{el.classList.add('letter');let title=document.createElement('div');title.className='section-title';title.textContent='한 사람의 안녕을 바라는 일';let p=document.createElement('p');p.className='text';p.textContent=pages[i-1];let f=document.createElement('span');f.className='footer';f.textContent=String(i).padStart(2,'0');el.append(title,p,f);el.onclick=null;}}
 function update(){prev.disabled=index===0;next.disabled=index===total-1;count.textContent=index===0?'':index===total-1?'TO BE CONTINUED…':String(index).padStart(2,'0')+' / '+String(pages.length).padStart(2,'0');}
 function go(delta){if(locked)return;const dest=index+delta;if(dest<0||dest>=total)return;locked=true;const ghost=page.cloneNode(true);ghost.removeAttribute('id');ghost.removeAttribute('tabindex');ghost.removeAttribute('aria-live');ghost.onclick=null;ghost.classList.add(delta>0?'turn':'turn-back');book.append(ghost);index=dest;render(page,index);update();setTimeout(()=>{ghost.remove();locked=false},670);}
